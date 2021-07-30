@@ -332,34 +332,24 @@ const VariantList = (props) => {
 														{variant.deskripsi}
 													</Typography>
 												</CardContent>
-												<CardActions className={classes.variantCardBottom}>
-													<span
-														style={{
-															position: 'absolute',
-															right: 0,
-															bottom: 0,
-															display: 'flex',
-															paddingRight: 16,
-															paddingBottom: 16,
-														}}
-													>
-														<AddNewVariant
-															edit={true}
-															variant={variant}
-															variants={variants}
-														/>
-														<Tooltip title="Delete">
-															<IconButton
-																aria-label="Delete"
-																className={classes.deleteButton}
-																onClick={() =>
-																	deleteVariant(variant._id, index)
-																}
-															>
-																<Delete fontSize="small" />
-															</IconButton>
-														</Tooltip>
-													</span>
+												<CardActions
+													className={classes.variantCardBottom}
+													style={{ justifyContent: 'flex-end' }}
+												>
+													<AddNewVariant
+														edit={true}
+														variant={variant}
+														variants={variants}
+													/>
+													<Tooltip title="Delete">
+														<IconButton
+															aria-label="Delete"
+															className={classes.deleteButton}
+															onClick={() => deleteVariant(variant._id, index)}
+														>
+															<Delete fontSize="small" />
+														</IconButton>
+													</Tooltip>
 												</CardActions>
 											</div>
 										</Grid>
