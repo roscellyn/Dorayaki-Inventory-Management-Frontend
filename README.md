@@ -33,6 +33,7 @@ npm install
 ```
 npm run dev
 ```
+3. Untuk backend dari program bisa di-clone dari repositori ini `https://github.com/roscellyn/Seleksi-Labpro-2021-Backend`
 
 ## References
 
