@@ -95,30 +95,35 @@ export default function AddNewStore(props) {
 					sameName = true;
 				}
 			});
-			if (!sameName) {
-				var newStore = {
-					nama: values.nama,
-					jalan: values.jalan,
-					kecamatan: values.kecamatan,
-					provinsi: values.provinsi,
-					noTelp: values.noTelp,
-					stok: values.stok,
-				};
 
+			var newStore = {
+				nama: values.nama,
+				jalan: values.jalan,
+				kecamatan: values.kecamatan,
+				provinsi: values.provinsi,
+				noTelp: values.noTelp,
+				stok: values.stok,
+			};
+
+			if (props.edit) {
 				setOpen(false);
 				setValues(initialValues);
 				setOpenSnackbar(true);
 
-				if (props.edit) {
-					StoreDataService.updateStore(props.store._id, newStore)
-						.then((response) => {
-							console.log(newStore);
-							console.log(response.data);
-						})
-						.catch((e) => {
-							console.log(e);
-						});
-				} else {
+				StoreDataService.updateStore(props.store._id, newStore)
+					.then((response) => {
+						console.log(newStore);
+						console.log(response.data);
+					})
+					.catch((e) => {
+						console.log(e);
+					});
+			} else {
+				if (!sameName) {
+					setOpen(false);
+					setValues(initialValues);
+					setOpenSnackbar(true);
+
 					StoreDataService.createStore(newStore)
 						.then((response) => {
 							console.log(newStore);
@@ -127,9 +132,9 @@ export default function AddNewStore(props) {
 						.catch((e) => {
 							console.log(e);
 						});
+				} else {
+					setOpenSnackbarAdd(true);
 				}
-			} else {
-				setOpenSnackbarAdd(true);
 			}
 		} else {
 			setOpenSnackbarAdd(true);

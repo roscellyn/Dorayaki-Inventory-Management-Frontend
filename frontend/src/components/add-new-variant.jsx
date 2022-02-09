@@ -87,21 +87,25 @@ export default function AddNewVariant(props) {
 					sameName = true;
 				}
 			});
-			if (!sameName) {
+			if (props.edit) {
 				setOpen(false);
 				setValues(initialValues);
 				setOpenSnackbar(true);
 
-				if (props.edit) {
-					VariantDataService.updateVariant(props.variant._id, newVariant)
-						.then((response) => {
-							console.log(newVariant);
-							console.log(response.data);
-						})
-						.catch((e) => {
-							console.log(e);
-						});
-				} else {
+				VariantDataService.updateVariant(props.variant._id, newVariant)
+					.then((response) => {
+						console.log(newVariant);
+						console.log(response.data);
+					})
+					.catch((e) => {
+						console.log(e);
+					});
+			} else {
+				if (!sameName) {
+					setOpen(false);
+					setValues(initialValues);
+					setOpenSnackbar(true);
+
 					VariantDataService.createVariant(newVariant)
 						.then((response) => {
 							console.log(newVariant);
@@ -110,9 +114,9 @@ export default function AddNewVariant(props) {
 						.catch((e) => {
 							console.log(e);
 						});
+				} else {
+					setOpenSnackbarAdd(true);
 				}
-			} else {
-				setOpenSnackbarAdd(true);
 			}
 		} else {
 			setOpenSnackbarAdd(true);
